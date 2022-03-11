@@ -11,7 +11,7 @@ import java.util.Scanner;
         }
 
         void playGame() {
-            int year = 1;
+            int year = 0;
             int starvationDeath = 0;
             int immigrants = 5;
             int population = 100;
@@ -21,6 +21,8 @@ import java.util.Scanner;
             int bushel = 3000;
             int newCostOfLand = 19;
 
+        for (int i = 1 ; i < 11; i++){
+            year+=1;
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
                 "In the previous year " + starvationDeath + " people starved to death.\n" +
@@ -30,6 +32,7 @@ import java.util.Scanner;
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushel-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.");
+        }
 
             // declare local variables here: grain, population, etc.
             // statements go after the declations
