@@ -6,7 +6,7 @@ import java.util.Scanner;
         Random rand = new Random();  // this is an instance variable
         Scanner scanner = new Scanner(System.in);
 
-        public static void main(String\[\] args) { // required in every Java program
+        public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
         }
 
