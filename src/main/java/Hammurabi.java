@@ -23,7 +23,7 @@ import java.util.Scanner;
 
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
-                "In the previous year " + starvationDeath + " people starved to death.\n" +
+                "In the previous year " + starvationDeaths + " people starved to death.\n" +
                 "In the previous year "+ immigrants +" people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
                 "We harvested "+ harvest +" bushels at " + acres/harvest + " bushels per acre.\n" +
@@ -36,5 +36,35 @@ import java.util.Scanner;
         }
 
         //other methods go here
+
+
+
+        //Part two methods
+
+        public int plagueDeaths(int population){
+            int plagueChance = rand.nextInt(100);
+            if(plagueChance >= 1) {
+                return population / 2;
+            } else {
+                return population;
+            }
+        }
+
+        public int starvationDeaths(int population, int bushelsFedtoPeople){
+            return bushelsFedtoPeople%%population;
+        }
+
+        public boolen uprising(int population, int howManyPeopleStarved){
+            double ratio = howManyPeopleStarved/population;
+
+            if (ratio > 45 ){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+
 
     }
