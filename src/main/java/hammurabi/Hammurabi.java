@@ -27,9 +27,10 @@ import java.util.Scanner;
             summary();
             while (year < 11 && notGameOver) {
                 askHowManyAcresToBuy(newCostOfLand(),bushels);
+                if (uprising()== true){
+                    notGameOver = false;}
             }
-            if (uprising()== true){
-                notGameOver = false;}
+
         }
 
             int getNumber(String message){
