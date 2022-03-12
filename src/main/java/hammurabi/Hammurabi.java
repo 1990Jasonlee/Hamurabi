@@ -1,5 +1,4 @@
 package hammurabi;               // package declaration
-import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
 import java.util.Scanner;
 
@@ -14,7 +13,7 @@ import java.util.Scanner;
         int harvest = 3000;
         int acres = 1000;
         int grainEatenByRats = 200;
-        int bushel = 3000;
+        int bushels = 3000;
         int newCostOfLand = 19;
 
         public static void main(String[] args) { // required in every Java program
@@ -23,8 +22,14 @@ import java.util.Scanner;
 
 
         void playGame() {
+            boolean notGameOver = true;
+            summary();
+            while (year < 11 && notGameOver) {
+                askHowManyAcresToBuy(newCostOfLand(),bushels);
+            }
+            if (uprising()== true){
+                notGameOver = false;}
         }
-
 
 //            int getNumber(String message){
 //                while (true) {
@@ -39,8 +44,6 @@ import java.util.Scanner;
 //            }
 
 
-//        for (int i = 1 ; i < 11; i++){
-//            year+=1;
         public void summary(){
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
@@ -48,7 +51,7 @@ import java.util.Scanner;
                 "In the previous year "+ immigrants +" people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
                 "We harvested "+ harvest +" bushels at " + acres/harvest + " bushels per acre.\n" +
-                "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushel-grainEatenByRats) +" bushels in storage.\n" +
+                "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushels-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.");
         }
@@ -131,7 +134,8 @@ import java.util.Scanner;
             return bushelsFedtoPeople%population;
         }
 
-        public boolean uprising(int population, int howManyPeopleStarved){
+        public boolean uprising(){
+            double howManyPeopleStarved = 0;
             double ratio = howManyPeopleStarved/population;
 
             if (ratio > 45 ){
