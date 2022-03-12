@@ -23,6 +23,9 @@ import java.util.Scanner;
             int newCostOfLand = 19;
 
         for (int i = 1 ; i < 11; i++){
+
+
+
             year+=1;
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
