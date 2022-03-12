@@ -57,7 +57,7 @@ import java.util.Scanner;
                 "In the previous year " + starvationDeaths + " people starved to death.\n" +
                 "In the previous year "+ immigrants +" people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
-                "We harvested "+ harvest +" bushels at " + acres/harvest + " bushels per acre.\n" +
+                "We harvested "+ harvest +" bushels at " + (harvest/acres) + " bushels per acre.\n" +
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushels-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.");
@@ -138,10 +138,10 @@ import java.util.Scanner;
 
         public int sanityCheck(String resource, int resAmnt, int resDmnd){
             boolean sane = false;
-            //System.out.println("O Great Hammurabi, how much " + resource + " do you wish to feed our people? We have " + resAmnt);
+            String message = ("O Great Hammurabi, how much " + resource + " do you wish to feed our people? We have " + resAmnt+". \n");
             int userInput;
             while(!sane){
-                userInput = scanner.nextInt();
+                userInput = getNumber(message);
                 if(resAmnt > userInput){
                     sane = true;
                     return userInput;
