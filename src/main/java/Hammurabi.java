@@ -45,22 +45,24 @@ import java.util.Scanner;
         //Starting methods that ask for user input
         //Asks the player how many acres of land to buy, and returns that number.
         public int askHowManyAcresToBuy(int price, int bushels) {
-            int acresToBuy;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?")
+            int acresToBuy = 0;
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?");
 
             if (bushels > price) {
-                return acresToBuy
+                return acresToBuy;
             } else {
-                System.out.println("You do not have enough bushels to buy this land! You have ")
+                System.out.println("You do not have enough bushels to buy this land! You have ");
             }
+
+            return 0;//just to get it to work DC
         }
 
         public int askHowManyAcresToSell(int acresOwned) {
-            int acresToSell;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?")
+            int acresToSell = 0;
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
 
             if (acresToSell > acresOwned) {
-                System.out.println("You do not have enough acres of land to sell!")
+                System.out.println("You do not have enough acres of land to sell!");
             } else {
                 return acresToSell;
             }
@@ -68,19 +70,21 @@ import java.util.Scanner;
         }
 
         public int askHowMuchGrainToFeedPeople(int bushels) {
-            int grainToFeed;
-            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?")
+            int grainToFeed = 0;
+            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
 
            if (bushels < grainToFeed) {
                System.out.println("You do not have that many bushels left!");
            } else {
                return grainToFeed;
            }
+
+           return 0; // just to get it to work DC
         }
 
         public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
-            int acresToPlant;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to plant?")
+            int acresToPlant = 0;
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to plant?");
             if (acresOwned < bushels) {
                 System.out.println("You do not have enough acres of land to plant!");
             } else if (bushels > acresOwned * 2) { //2 bushels per acre of land. Ensure there are enough bushels
@@ -88,6 +92,8 @@ import java.util.Scanner;
             } else if (acresToPlant > population * 10) {
                 return acresToPlant;
             }
+
+            return 0;   //just to get it to work DC
         }
 
         public int plagueDeaths(int population){
@@ -100,10 +106,10 @@ import java.util.Scanner;
         }
 
         public int starvationDeaths(int population, int bushelsFedtoPeople){
-            return bushelsFedtoPeople%%population;
+            return bushelsFedtoPeople%population;
         }
 
-        public boolen uprising(int population, int howManyPeopleStarved){
+        public boolean uprising(int population, int howManyPeopleStarved){
             double ratio = howManyPeopleStarved/population;
 
             if (ratio > 45 ){
@@ -115,7 +121,7 @@ import java.util.Scanner;
         }
 
         public int immigrants(int population, int acresOwned, int grainInStorage){
-            return hold = (20*acresOwned+grainInStorage) / (100 * population) + 1;
+            return (20*acresOwned+grainInStorage) / (100 * population) + 1;
         }
 
         public int harvest(int acres, int bushelsUsedAsSeed){
@@ -123,8 +129,8 @@ import java.util.Scanner;
 
             if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
                 return ranNum*bushelsUsedAsSeed;
-            } else if ( acres < bushelsUsedAsSeed){     //vice-versa
-                return ranNum*acres
+            } else {                                    //vice-versa
+                return ranNum*acres;
             }
         }
 
@@ -133,12 +139,11 @@ import java.util.Scanner;
             if (ranNum >= 40){
                 return rand.nextInt(10, 30) * bushels;
             }else{
-                return boolean;
+                return bushels;
             }
         }
 
         public int newCostOfLand(){
-            return ranNum = rand.nextInt(17, 23);
+            return rand.nextInt(17, 23);
         }
     }
-}
