@@ -1,4 +1,5 @@
 package hammurabi;               // package declaration
+import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
 import java.util.Scanner;
 
@@ -6,37 +7,38 @@ import java.util.Scanner;
         Random rand = new Random();  // this is an instance variable
         Scanner scanner = new Scanner(System.in);
 
+        int year = 0;
+        int starvationDeaths = 0;
+        int immigrants = 5;
+        int population = 100;
+        int harvest = 3000;
+        int acres = 1000;
+        int grainEatenByRats = 200;
+        int bushel = 3000;
+        int newCostOfLand = 19;
+
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
         }
 
 
         void playGame() {
-            int year = 0;
-            int starvationDeaths = 0;
-            int immigrants = 5;
-            int population = 100;
-            int harvest = 3000;
-            int acres = 1000;
-            int grainEatenByRats = 200;
-            int bushel = 3000;
-            int newCostOfLand = 19;
 
-            int getNumber(String message) {
-                while (true) {
-                    System.out.print(message);
-                    try {
-                        return scanner.nextInt();
-                    }
-                    catch (InputMismatchException e) {
-                        System.out.println("\"" + scanner.next() + "\" isn't a number!");
-                    }
-                }
-            }
+
+//            int getNumber(String message){
+//                while (true) {
+//                    System.out.print(message);
+//                    try {
+//                        return scanner.nextInt();
+//                    }
+//                    catch (InputMismatchException e) {
+//                        System.out.println("\"" + scanner.next() + "\" isn't a number!");
+//                    }
+//                }
+//            }
+
 
         for (int i = 1 ; i < 11; i++){
-
-
             year+=1;
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
