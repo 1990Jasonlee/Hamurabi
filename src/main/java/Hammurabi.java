@@ -65,6 +65,30 @@ import java.util.Scanner;
 
         }
 
+        public int immigrants(int population, int acresOwned, int grainInStorage){
+            return hold = (20*acresOwned+grainInStorage) / (100 * population) + 1;
+        }
 
+        public int harvest(int acres, int bushelsUsedAsSeed){
+            int ranNum = rand.nextInt(1, 6);
 
+            if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
+                return ranNum*bushelsUsedAsSeed;
+            } else if ( acres < bushelsUsedAsSeed){     //vice-versa
+                return ranNum*acres
+            }
+        }
+
+        public int grainEatenByRats(int bushels){
+            int ranNum = rand.nextInt(0, 100);
+            if (ranNum >= 40){
+                return rand.nextInt(10, 30) * bushels;
+            }else{
+                return boolean;
+            }
+        }
+
+        public int newCostOfLand(){
+            return ranNum = rand.nextInt(17, 23);
+        }
     }
