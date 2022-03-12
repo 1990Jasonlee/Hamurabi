@@ -1,4 +1,5 @@
 package hammurabi;               // package declaration
+import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
 import java.util.Scanner;
 
@@ -31,17 +32,17 @@ import java.util.Scanner;
                 notGameOver = false;}
         }
 
-//            int getNumber(String message){
-//                while (true) {
-//                    System.out.print(message);
-//                    try {
-//                        return scanner.nextInt();
-//                    }
-//                    catch (InputMismatchException e) {
-//                        System.out.println("\"" + scanner.next() + "\" isn't a number!");
-//                    }
-//                }
-//            }
+            int getNumber(String message){
+                while (true) {
+                    System.out.print(message);
+                    try {
+                        return scanner.nextInt();
+                    }
+                    catch (InputMismatchException e) {
+                        System.out.println("\"" + scanner.next() + "\" isn't a number!");
+                    }
+                }
+            }
 
 
         public void summary(){
@@ -67,8 +68,8 @@ import java.util.Scanner;
         public int askHowManyAcresToBuy(int price, int bushels) {
             int acresToBuy;
 
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?");
-            acresToBuy = scanner.nextInt();
+            String message = ("O Great Hammurabi, how many acres of land do you wish to buy?");
+            acresToBuy = getNumber(message);
 
             if (bushels < price) {
                 System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.");
