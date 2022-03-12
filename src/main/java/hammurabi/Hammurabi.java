@@ -23,6 +23,7 @@ import java.util.Scanner;
 
 
         void playGame() {
+        }
 
 
 //            int getNumber(String message){
@@ -38,8 +39,9 @@ import java.util.Scanner;
 //            }
 
 
-        for (int i = 1 ; i < 11; i++){
-            year+=1;
+//        for (int i = 1 ; i < 11; i++){
+//            year+=1;
+        public void summary(){
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
                 "In the previous year " + starvationDeaths + " people starved to death.\n" +
@@ -53,7 +55,6 @@ import java.util.Scanner;
 
             // declare local variables here: grain, population, etc.
             // statements go after the declations
-        }
 
         //other methods go here
 
@@ -63,13 +64,13 @@ import java.util.Scanner;
         public int askHowManyAcresToBuy(int price, int bushels) {
             int acresToBuy;
 
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?")
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?");
             acresToBuy = scanner.nextInt();
 
             if (bushels < price) {
-                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.")
+                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.");
             } else {
-                return acresTobuy;
+                return acresToBuy;
             }
 
             return 0;//just to get it to work DC
@@ -77,19 +78,20 @@ import java.util.Scanner;
 
         public int askHowManyAcresToSell(int acresOwned) {
             int acresToSell;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?")
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
             acresToSell = scanner.nextInt();
 
             if (acresToSell > acresOwned) {
-                System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.")
+                System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
             } else {
                 return acresToSell;
             }
+            return 0;
         }
 
         public int askHowMuchGrainToFeedPeople(int bushels) {
             int grainToFeed;
-            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?")
+            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
             grainToFeed = scanner.nextInt();
            if (bushels < grainToFeed) {
                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " acres of land.");
@@ -102,7 +104,7 @@ import java.util.Scanner;
 
         public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
             int acresToPlant;
-            System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.")
+            System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
             acresToPlant = scanner.nextInt();
 
             if (acresOwned < acresToPlant) {
