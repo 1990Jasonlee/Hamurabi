@@ -36,6 +36,7 @@ import java.util.Scanner;
                 year++;
                 summary();
             }
+
         }
 
             int getNumber(String message){
@@ -63,6 +64,18 @@ import java.util.Scanner;
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.");
         }
 
+        public void finalSummary(){
+
+            System.out.println("O great Hammurabi!\n" +
+                    "In only year "+ year +" of your rule,\n" +
+                    "you have created a disaster, you have been overthrown as ruler.");
+
+            System.out.println("O great Hammurabi!\n" +
+                    "After "+ year +" of your rule.\n" +
+                    "In your " +year+ "rule, "+ immigrants +" people entered the kingdom.\n" +
+                    "The city owns "+ acres +" acres of land.\n" +
+                    "Congratulations on your retirement");
+        }
             // declare local variables here: grain, population, etc.
             // statements go after the declations
 
