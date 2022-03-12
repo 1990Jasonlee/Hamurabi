@@ -176,7 +176,7 @@ import java.util.Scanner;
         public int plagueDeaths(int population){
             int plagueChance = rand.nextInt(100);
             if(plagueChance >= 15) {
-                System.out.println("O Great Hammurabi, we've experienced a plauge! Half the population has died!");
+                System.out.println("O Great Hammurabi, we've experienced a plague! Half the population has died!");
                 return population / 2;
             } else {
                 System.out.println("O Great Hammurabi, another year without the plague!");
