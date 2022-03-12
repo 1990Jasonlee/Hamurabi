@@ -22,8 +22,19 @@ import java.util.Scanner;
             int bushel = 3000;
             int newCostOfLand = 19;
 
-        for (int i = 1 ; i < 11; i++){
+            int getNumber(String message) {
+                while (true) {
+                    System.out.print(message);
+                    try {
+                        return scanner.nextInt();
+                    }
+                    catch (InputMismatchException e) {
+                        System.out.println("\"" + scanner.next() + "\" isn't a number!");
+                    }
+                }
+            }
 
+        for (int i = 1 ; i < 11; i++){
 
 
             year+=1;
