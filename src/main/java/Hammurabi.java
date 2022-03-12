@@ -22,33 +22,36 @@ import java.util.Scanner;
         //Asks the player how many acres of land to buy, and returns that number.
         public int askHowManyAcresToBuy(int price, int bushels) {
             int acresToBuy;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?")
 
-            if (bushels > price) {
-                return acresToBuy
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?")
+            acresToBuy = scanner.nextInt();
+
+            if (bushels < price) {
+                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.")
             } else {
-                System.out.println("You do not have enough bushels to buy this land! You have ")
+                return acresTobuy;
             }
         }
 
         public int askHowManyAcresToSell(int acresOwned) {
             int acresToSell;
             System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?")
+            acresToSell = scanner.nextInt();
 
             if (acresToSell > acresOwned) {
-                System.out.println("You do not have enough acres of land to sell!")
+                System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.")
             } else {
                 return acresToSell;
             }
-            return acresToSell;
         }
 
         public int askHowMuchGrainToFeedPeople(int bushels) {
             int grainToFeed;
             System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?")
+            grainToFeed = scanner.nextInt();
 
            if (bushels < grainToFeed) {
-               System.out.println("You do not have that many bushels left!");
+               System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " acres of land.");
            } else {
                return grainToFeed;
            }
@@ -56,9 +59,11 @@ import java.util.Scanner;
 
         public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
             int acresToPlant;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to plant?")
-            if (acresOwned < bushels) {
-                System.out.println("You do not have enough acres of land to plant!");
+            System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.")
+            acresToPlant = scanner.nextInt();
+
+            if (acresOwned < acresToPlant) {
+                System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
             } else if (bushels > acresOwned * 2) { //2 bushels per acre of land. Ensure there are enough bushels
                 return acresToPlant;
             } else if (acresToPlant > population * 10) {
