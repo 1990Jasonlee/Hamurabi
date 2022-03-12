@@ -23,13 +23,19 @@ import java.util.Scanner;
 
 
         void playGame() {
-            boolean notGameOver = true;
+            boolean GameOver = false;
             summary();
-            while (year < 11 && notGameOver) {
-                askHowManyAcresToBuy(newCostOfLand(),bushels);
+            while (year < 11 && !GameOver) {
+
+                askHowManyAcresToBuy(newCostOfLand(), bushels);
+
+
+
+                if (uprising(population, starvationDeaths) == true) {
+                    GameOver = true;
+                }
+                year++;
             }
-            if (uprising()== true){
-                notGameOver = false;}
         }
 
             int getNumber(String message){
@@ -122,33 +128,52 @@ import java.util.Scanner;
             return 0;   //just to get it to work DC
         }
 
+
+
+
+        //The methods for random events!
         public int plagueDeaths(int population){
             int plagueChance = rand.nextInt(100);
-            if(plagueChance >= 1) {
+            if(plagueChance >= 15) {
+                System.out.println("O Great Hammurabi, we've experienced a plauge! Half the population has died!");
                 return population / 2;
             } else {
+                System.out.println("O Great Hammurabi, another year without the plague!");
                 return population;
             }
         }
 
         public int starvationDeaths(int population, int bushelsFedtoPeople){
-            return bushelsFedtoPeople%population;
+
+            if(bushelsFedtoPeople%population != 0){
+                System.out.println("O Great Hammurabi! Sad news! We have lost " + bushelsFedtoPeople%population + " due to starvation!");
+                return bushelsFedtoPeople%population;
+            } else {
+                System.out.println("O Great Hammurabi! Huzzah, no one has died from starvation!");
+                return bushelsFedtoPeople%population;
+            }
         }
 
-        public boolean uprising(){
-            double howManyPeopleStarved = 0;
+        public boolean uprising(int population, int howManyPeopleStarved){
             double ratio = howManyPeopleStarved/population;
-
-            if (ratio > 45 ){
+            if (ratio > 0.45 ){
                 return true;
             } else {
                 return false;
             }
-
         }
 
         public int immigrants(int population, int acresOwned, int grainInStorage){
-            return (20*acresOwned+grainInStorage) / (100 * population) + 1;
+            int newComers = (20*acresOwned+grainInStorage) / (100 * population) + 1;
+
+            if (newComers > 0) {
+                System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
+                return newComers;
+            }
+            else {
+                System.out.println("Oh Great Hammurabi! We have no new immigrants.");
+                return 0;
+            }
         }
 
         public int harvest(int acres, int bushelsUsedAsSeed){
@@ -164,13 +189,17 @@ import java.util.Scanner;
         public int grainEatenByRats(int bushels){
             int ranNum = rand.nextInt(0, 100);
             if (ranNum >= 40){
+                int grainEatenByRats = rand.nextInt(10, 30)*bushels;
+                System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
                 return rand.nextInt(10, 30) * bushels;
             }else{
-                return bushels;
+                return 0;
             }
         }
 
         public int newCostOfLand(){
-            return rand.nextInt(17, 23);
+            int costOfLand = rand.nextInt(17, 23);
+            System.out.println("The cost of land is now " + costOfLand + " bushels per acre");
+            return costOfLand;
         }
     }
