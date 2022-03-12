@@ -25,16 +25,16 @@ import java.util.Scanner;
         void playGame() {
             boolean GameOver = false;
             summary();
-            while (year < 11 && !GameOver) {
-
-                askHowManyAcresToBuy(newCostOfLand(), bushels);
-
+            while (year < 11 && !GameOver) {  //(year < 11 && !GameOver)
+                bushels -= askHowMuchGrainToFeedPeople(bushels);
+                //askHowManyAcresToBuy(newCostOfLand(), bushels);
 
 
                 if (uprising(population, starvationDeaths) == true) {
                     GameOver = true;
                 }
                 year++;
+                summary();
             }
         }
 
@@ -71,6 +71,21 @@ import java.util.Scanner;
 
         //Starting methods that ask for user input
         //Asks the player how many acres of land to buy, and returns that number.
+/*        public int askHowManyAcresToBuy(int price, int bushels) {
+            int acresToBuy;
+
+            String message = ("O Great Hammurabi, how many acres of land do you wish to buy?");
+            acresToBuy = getNumber(message);
+
+            if (bushels < price) {
+                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.");
+            } else {
+                return acresToBuy;
+            }
+
+            return 0;//just to get it to work DC
+        }*/
+
         public int askHowManyAcresToBuy(int price, int bushels) {
             int acresToBuy;
 
@@ -86,7 +101,7 @@ import java.util.Scanner;
             return 0;//just to get it to work DC
         }
 
-        public int askHowManyAcresToSell(int acresOwned) {
+/*        public int askHowManyAcresToSell(int acresOwned) {
             int acresToSell;
             System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
             acresToSell = scanner.nextInt();
@@ -97,6 +112,11 @@ import java.util.Scanner;
                 return acresToSell;
             }
             return 0;
+        }*/
+
+        public int askHowManyAcresToSell(int acresOwned) {
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
+            return sanityCheck("acres", acresOwned, 0);
         }
 
 /*        public int askHowMuchGrainToFeedPeople(int bushels) {
@@ -108,29 +128,25 @@ import java.util.Scanner;
            } else {
                return grainToFeed;
            }
-
            return 0; // just to get it to work DC
         }*/
 
         public int askHowMuchGrainToFeedPeople(int bushels) {
-
             System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
-            return sanityCheck("grain", bushels, 0);
-
+            return sanityCheck("bushels", bushels, 0);
         }
 
         public int sanityCheck(String resource, int resAmnt, int resDmnd){
             boolean sane = false;
             //System.out.println("O Great Hammurabi, how much " + resource + " do you wish to feed our people? We have " + resAmnt);
             int userInput;
-
             while(!sane){
                 userInput = scanner.nextInt();
                 if(resAmnt > userInput){
                     sane = true;
                     return userInput;
                 }
-                System.out.println("O Great Hammurabi, surely you jest! We only have " + resAmnt + " of " + resource);
+                System.out.println("O Great Hammurabi, surely you jest! We only have " + resAmnt + " " + resource);
             }
             return 0;
         }
