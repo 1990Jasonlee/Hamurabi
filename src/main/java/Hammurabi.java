@@ -10,9 +10,10 @@ import java.util.Scanner;
             new Hammurabi().playGame();
         }
 
+
         void playGame() {
-            int year = 1;
-            int starvationDeath = 0;
+            int year = 0;
+            int starvationDeaths = 0;
             int immigrants = 5;
             int population = 100;
             int harvest = 3000;
@@ -21,6 +22,8 @@ import java.util.Scanner;
             int bushel = 3000;
             int newCostOfLand = 19;
 
+        for (int i = 1 ; i < 11; i++){
+            year+=1;
             System.out.println("O great Hammurabi!\n" +
                 "You are in year "+ year +" of your ten year rule.\n" +
                 "In the previous year " + starvationDeaths + " people starved to death.\n" +
@@ -30,6 +33,7 @@ import java.util.Scanner;
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushel-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.");
+        }
 
             // declare local variables here: grain, population, etc.
             // statements go after the declations
@@ -38,8 +42,53 @@ import java.util.Scanner;
         //other methods go here
 
 
+        //Starting methods that ask for user input
+        //Asks the player how many acres of land to buy, and returns that number.
+        public int askHowManyAcresToBuy(int price, int bushels) {
+            int acresToBuy;
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?")
 
-        //Part two methods
+            if (bushels > price) {
+                return acresToBuy
+            } else {
+                System.out.println("You do not have enough bushels to buy this land! You have ")
+            }
+        }
+
+        public int askHowManyAcresToSell(int acresOwned) {
+            int acresToSell;
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?")
+
+            if (acresToSell > acresOwned) {
+                System.out.println("You do not have enough acres of land to sell!")
+            } else {
+                return acresToSell;
+            }
+            return acresToSell;
+        }
+
+        public int askHowMuchGrainToFeedPeople(int bushels) {
+            int grainToFeed;
+            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?")
+
+           if (bushels < grainToFeed) {
+               System.out.println("You do not have that many bushels left!");
+           } else {
+               return grainToFeed;
+           }
+        }
+
+        public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+            int acresToPlant;
+            System.out.println("O Great Hammurabi, how many acres of land do you wish to plant?")
+            if (acresOwned < bushels) {
+                System.out.println("You do not have enough acres of land to plant!");
+            } else if (bushels > acresOwned * 2) { //2 bushels per acre of land. Ensure there are enough bushels
+                return acresToPlant;
+            } else if (acresToPlant > population * 10) {
+                return acresToPlant;
+            }
+        }
 
         public int plagueDeaths(int population){
             int plagueChance = rand.nextInt(100);
@@ -92,3 +141,4 @@ import java.util.Scanner;
             return ranNum = rand.nextInt(17, 23);
         }
     }
+}
