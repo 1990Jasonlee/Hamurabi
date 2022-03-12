@@ -99,7 +99,7 @@ import java.util.Scanner;
             return 0;
         }
 
-        public int askHowMuchGrainToFeedPeople(int bushels) {
+/*        public int askHowMuchGrainToFeedPeople(int bushels) {
             int grainToFeed;
             System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
             grainToFeed = scanner.nextInt();
@@ -110,7 +110,32 @@ import java.util.Scanner;
            }
 
            return 0; // just to get it to work DC
+        }*/
+
+        public int askHowMuchGrainToFeedPeople(int bushels) {
+
+            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
+            return sanityCheck("grain", bushels, 0);
+
         }
+
+        public int sanityCheck(String resource, int resAmnt, int resDmnd){
+            boolean sane = false;
+            //System.out.println("O Great Hammurabi, how much " + resource + " do you wish to feed our people? We have " + resAmnt);
+            int userInput;
+
+            while(!sane){
+                userInput = scanner.nextInt();
+                if(resAmnt > userInput){
+                    sane = true;
+                    return userInput;
+                }
+                System.out.println("O Great Hammurabi, surely you jest! We only have " + resAmnt + " of " + resource);
+            }
+            return 0;
+        }
+
+
 
         public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
             int acresToPlant;
@@ -128,7 +153,7 @@ import java.util.Scanner;
             return 0;   //just to get it to work DC
         }
 
-
+        //public int playerChoices (int )
 
 
         //The methods for random events!
@@ -167,11 +192,11 @@ import java.util.Scanner;
             int newComers = (20*acresOwned+grainInStorage) / (100 * population) + 1;
 
             if (newComers > 0) {
-                System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
+                //System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
                 return newComers;
             }
             else {
-                System.out.println("Oh Great Hammurabi! We have no new immigrants.");
+                //System.out.println("Oh Great Hammurabi! We have no new immigrants.");
                 return 0;
             }
         }
@@ -190,7 +215,7 @@ import java.util.Scanner;
             int ranNum = rand.nextInt(0, 100);
             if (ranNum >= 40){
                 int grainEatenByRats = rand.nextInt(10, 30)*bushels;
-                System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
+                //System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
                 return rand.nextInt(10, 30) * bushels;
             }else{
                 return 0;
@@ -199,7 +224,7 @@ import java.util.Scanner;
 
         public int newCostOfLand(){
             int costOfLand = rand.nextInt(17, 23);
-            System.out.println("The cost of land is now " + costOfLand + " bushels per acre");
+            //System.out.println("The cost of land is now " + costOfLand + " bushels per acre");
             return costOfLand;
         }
     }
