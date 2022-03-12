@@ -41,6 +41,7 @@ import java.util.Scanner;
 
         //other methods go here
 
+
         //Starting methods that ask for user input
         //Asks the player how many acres of land to buy, and returns that number.
         public int askHowManyAcresToBuy(int price, int bushels) {
@@ -88,4 +89,56 @@ import java.util.Scanner;
                 return acresToPlant;
             }
         }
+
+        public int plagueDeaths(int population){
+            int plagueChance = rand.nextInt(100);
+            if(plagueChance >= 1) {
+                return population / 2;
+            } else {
+                return population;
+            }
+        }
+
+        public int starvationDeaths(int population, int bushelsFedtoPeople){
+            return bushelsFedtoPeople%%population;
+        }
+
+        public boolen uprising(int population, int howManyPeopleStarved){
+            double ratio = howManyPeopleStarved/population;
+
+            if (ratio > 45 ){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        public int immigrants(int population, int acresOwned, int grainInStorage){
+            return hold = (20*acresOwned+grainInStorage) / (100 * population) + 1;
+        }
+
+        public int harvest(int acres, int bushelsUsedAsSeed){
+            int ranNum = rand.nextInt(1, 6);
+
+            if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
+                return ranNum*bushelsUsedAsSeed;
+            } else if ( acres < bushelsUsedAsSeed){     //vice-versa
+                return ranNum*acres
+            }
+        }
+
+        public int grainEatenByRats(int bushels){
+            int ranNum = rand.nextInt(0, 100);
+            if (ranNum >= 40){
+                return rand.nextInt(10, 30) * bushels;
+            }else{
+                return boolean;
+            }
+        }
+
+        public int newCostOfLand(){
+            return ranNum = rand.nextInt(17, 23);
+        }
     }
+}
