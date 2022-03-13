@@ -158,8 +158,7 @@ import java.util.Scanner;
                         "GAME OVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }else
             System.out.println("O great Hammurabi!\n" +
-                    "After " + year + " of your rule.\n" +
-                    "In your " + year + "rule, " + immigrantsSum + " people entered the kingdom.\n" +
+                    "In your " + year + " year rule, " + immigrantsSum + " people entered the kingdom.\n" +
                     "The city owns " + acres + " acres of land.\n" +
                     "Congratulations on your retirement");
         }
