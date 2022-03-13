@@ -25,18 +25,19 @@ import java.util.Scanner;
         int acresSold;
         int bushelsToFeed;
         int acresPlanted;
+        int plagueBodies;
+        int bushlesForPlanting;
 
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
         }
 
-
         void playGame() {
             boolean GameOver = false;
             summary();
 
-
             while (year < 10 && !GameOver) {
+
 
                 System.out.println("O Great Hammurabi! It is a new year!\n" +
                         "Would you like to buy or sell land?");
@@ -63,11 +64,30 @@ import java.util.Scanner;
                 bushels -= bushelsToFeed;
 
                 acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
-                bushels -= acresPlanted*2;
+                bushlesForPlanting = acresPlanted*2;
+                bushels -= bushlesForPlanting;
+
 
                 if (uprising(population, starvationDeaths) == true) {
+
+                plagueBodies = plagueDeaths(population);
+                starvationDeaths = starvationDeaths(population, bushelsToFeed);
+                  
                     GameOver = true;
+                    break;
                 }
+
+
+                immigrants = immigrants(population, acres, bushels);
+                population += immigrants;
+
+                harvest = harvest(acresPlanted, bushlesForPlanting);
+                bushels += harvest;
+
+                grainEatenByRats = grainEatenByRats(bushels);
+                bushels -= grainEatenByRats;
+
+                newCostOfLand = newCostOfLand();
 
                 year++;
                 newCostOfLand();
@@ -76,6 +96,8 @@ import java.util.Scanner;
                 population += immigrants;
                 summary();
             }
+
+            //Add a new gameOver here
 
         }
 
@@ -90,7 +112,6 @@ import java.util.Scanner;
                 }
             }
         }
-
 
         public void summary(){
             System.out.println("O great Hammurabi!\n" +
@@ -161,8 +182,6 @@ import java.util.Scanner;
 
         }
 
-
-
 /*        public int askHowManyAcresToSell(int acresOwned) {
             int acresToSell;
             System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
@@ -202,12 +221,13 @@ import java.util.Scanner;
         }
 
         public int sanityCheck(String resource,String message, int posAmnt, int resDmnd){
+
             boolean sane = false;
             //String message = ("O Great Hammurabi, how much " + resource + " do you wish to spend? We have " + resAmnt + " " + resource);
             int userInput;
             while(!sane){
                 userInput = getNumber(message);
-                if(posAmnt > userInput && userInput > 0){
+                if(posAmnt >= userInput && userInput >= 0){
                     sane = true;
                     return userInput;
                 }
@@ -272,11 +292,14 @@ import java.util.Scanner;
 
         public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
 
-            int acresToPlant;
             int popPossible = acresOwned/10;
             int bushPossible = bushels/2;
             int possiblePlant;
-            boolean sane = false;
+
+            if (population < popPossible){
+                popPossible = population*10;
+            }
+
             //Following code decides the possible limit based on lowest resource.
             if (popPossible < bushPossible && popPossible < acresOwned){
                 possiblePlant = popPossible;
@@ -286,8 +309,10 @@ import java.util.Scanner;
                 possiblePlant = acresOwned;
             }
             String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
+
                     "The limit is "+ possiblePlant +".\n";
             return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
+
         }
         //public int playerChoices (int )
 
@@ -306,17 +331,17 @@ import java.util.Scanner;
 
         public int starvationDeaths(int population, int bushelsFedtoPeople){
 
-            if(bushelsFedtoPeople%population != 0){
-                System.out.println("O Great Hammurabi! Sad news! We have lost " + bushelsFedtoPeople%population + " due to starvation!");
-                return bushelsFedtoPeople%population;
+            if((bushelsFedtoPeople/20)%population != 0){
+                System.out.println("O Great Hammurabi! Sad news! We have lost " + (population - (bushelsFedtoPeople/20)) + " due to starvation!");
+                return population - (bushelsFedtoPeople/20);
             } else {
                 System.out.println("O Great Hammurabi! Huzzah, no one has died from starvation!");
-                return bushelsFedtoPeople%population;
+                return 0;
             }
         }
 
         public boolean uprising(int population, int howManyPeopleStarved){
-            double ratio = howManyPeopleStarved/population;
+            double ratio = (double) howManyPeopleStarved /population;
             if (ratio > 0.45 ){
                 return true;
             } else {
@@ -342,21 +367,23 @@ import java.util.Scanner;
         public int harvest(int acres, int bushelsUsedAsSeed){
             int ranNum = rand.nextInt(1, 6);
 
-            if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
-                return ranNum*bushelsUsedAsSeed;
-            } else {                                    //vice-versa
+            //           if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
+//                return ranNum*bushelsUsedAsSeed;
+//            } else {                                    //vice-versa
                 return ranNum*acres;
-            }
+//            }
         }
 
         public int grainEatenByRats(int bushels){
             int ranNum = rand.nextInt(0, 100);
+
             if (ranNum <= 40){
                 int EatenByRats = rand.nextInt(10, 30*(bushels/100));
                 //System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
                 bushels -= EatenByRats;
                 grainEatenByRats = EatenByRats;
                 return grainEatenByRats;
+
             }else{
                 grainEatenByRats = 0;
                 return grainEatenByRats;
