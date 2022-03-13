@@ -18,6 +18,12 @@ import java.util.Scanner;
         int newCostOfLand = 19;
         int acresToBuy = 0;
 
+        //New variables
+        int bushelsSpent;
+        int buyOrSell;
+        int acresSold;
+        int bushelsToFeed;
+        int acresPlanted;
 
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
@@ -27,10 +33,38 @@ import java.util.Scanner;
         void playGame() {
             boolean GameOver = false;
             summary();
-            while (year < 11 && !GameOver) {  //(year < 11 && !GameOver)
-                askHowManyAcresToBuy(newCostOfLand, bushels);
-                //bushels -= askHowMuchGrainToFeedPeople(bushels);
-                //askHowManyAcresToBuy(newCostOfLand(), bushels);
+
+
+
+            while (year < 3 && !GameOver) {  //(year < 11 && !GameOver)
+
+                System.out.println("O Great Hammurabi! It is a new year!\n" +
+                        "Would you like to buy or sell land?");
+
+                while(true) {
+                    buyOrSell = getNumber("Enter 1 to Buy \nEnter 2 to Sell\n");
+                    if (buyOrSell == 1) {
+                        bushelsSpent = askHowManyAcresToBuy(newCostOfLand, bushels);
+                        acresToBuy = (bushels - bushelsSpent) / newCostOfLand;
+                        bushels = bushelsSpent;
+                        break;
+                    } else if (buyOrSell == 2){
+                        acresSold = askHowManyAcresToSell(acres);
+                        acres -= acresSold;
+                        bushels += acresSold * newCostOfLand;
+                        break;
+                    } else {
+                        System.out.println("Appoligies Great Hammurabi, I did not understand you!\n" +
+                                "Would you like to buy or sell land?\n");
+                    }
+                }
+
+                bushelsToFeed = askHowMuchGrainToFeedPeople(bushels);
+                bushels -= bushelsToFeed;
+
+                acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
+                bushels -= acresPlanted*2;
+
 
 
                 if (uprising(population, starvationDeaths) == true) {
@@ -42,17 +76,17 @@ import java.util.Scanner;
 
         }
 
-            int getNumber(String message){
-                while (true) {
-                    System.out.print(message);
-                    try {
-                        return scanner.nextInt();
-                    }
-                    catch (InputMismatchException e) {
-                        System.out.println("\"" + scanner.next() + "\" isn't a number!");
-                    }
+        int getNumber(String message){
+            while (true) {
+                System.out.print(message);
+                try {
+                    return scanner.nextInt();
+                }
+                catch (InputMismatchException e) {
+                    System.out.println("\"" + scanner.next() + "\" isn't a number!\n");
                 }
             }
+        }
 
 
         public void summary(){
@@ -64,7 +98,8 @@ import java.util.Scanner;
                 "We harvested "+ harvest +" bushels at " + (harvest/acres) + " bushels per acre.\n" +
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushels-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
-                "Land is currently worth "+ newCostOfLand +" bushels per acre.");
+                "Land is currently worth "+ newCostOfLand +" bushels per acre.\n" +
+                    "-----------------------------------------------------\n");
         }
 
         public void finalSummary(){
@@ -106,16 +141,17 @@ import java.util.Scanner;
             boolean start = true;
 
             while (start = true) {
-                System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?");
+                System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?\n");
                 acresToBuy = scanner.nextInt();
                 price = newCostOfLand * acresToBuy;
                 if (bushels > price) {
                     bushels -= price;
                     System.out.println("Total price cost " + price + " bushels.");
-                    System.out.println("You have " + bushels + " bushels.");
-                    break;
+                    System.out.println("You have " + bushels + " bushels.\n");
+                    return bushels;
                 } else {
-                    System.out.println("O Great Hammurabi, surely you jest! We only have " + bushels + " bushels left. That would cost " + price + " bushels.");
+                    System.out.println("O Great Hammurabi, surely you jest! " +
+                            "We only have " + bushels + " bushels left. That would cost " + price + " bushels.\n");
                 }
             }
                 return bushels;
@@ -138,8 +174,9 @@ import java.util.Scanner;
         }*/
 
         public int askHowManyAcresToSell(int acresOwned) {
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
-            return sanityCheck("acres", acresOwned, 0);
+            //System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
+            String message = "O Great Hammurabi, how many acres of land do you wish to sell?\n";
+            return sanityCheck("acres", message, acresOwned, 0);
         }
 
 /*        public int askHowMuchGrainToFeedPeople(int bushels) {
@@ -155,28 +192,35 @@ import java.util.Scanner;
         }*/
 
         public int askHowMuchGrainToFeedPeople(int bushels) {
-            System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
-            return sanityCheck("bushels", bushels, 0);
+            //System.out.println("O Great Hammurabi, how much grain do you wish to feed our people?");
+
+            String message = "O Great Hammurabi, how much grain do you wish to feed our people?\n";
+            return sanityCheck("bushels", message,bushels, 0);
         }
 
-        public int sanityCheck(String resource, int resAmnt, int resDmnd){
+        public int sanityCheck(String resource,String message, int posAmnt, int resDmnd){
             boolean sane = false;
-            String message = ("O Great Hammurabi, how much " + resource + " do you wish to feed our people? We have " + resAmnt+". \n");
+            //String message = ("O Great Hammurabi, how much " + resource + " do you wish to spend? We have " + resAmnt + " " + resource);
             int userInput;
             while(!sane){
                 userInput = getNumber(message);
-                if(resAmnt > userInput){
+                if(posAmnt > userInput && userInput > 0){
                     sane = true;
                     return userInput;
                 }
-                System.out.println("O Great Hammurabi, surely you jest! We only have " + resAmnt + " " + resource);
+                System.out.println("O Great Hammurabi, surely you jest!" + posAmnt + " is the limit!" + "\n"
+                +"Current resources\n -----------\n" + "Population     " + population + "\n" +
+                        "Bushels        " + bushels + "\n" + "Acres          " + acres +"\n" +
+                        "Price of of land is currently " + newCostOfLand + " bushels");
             }
             return 0;
         }
+/*                System.out.println("O Great Hammurabi, surely you jest! We only have " + posAmnt + " " + resource + "\n"
+                +"Current resources\n -----------\n" + "Population     " + population + "\n" +
+                "Bushels        " + bushels + "\n" + "Acres          " + acres);*/
 
 
-
-        public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+ /*       public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
             int acresToPlant;
             System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
             acresToPlant = scanner.nextInt();
@@ -190,8 +234,58 @@ import java.util.Scanner;
             }
 
             return 0;   //just to get it to work DC
-        }
+        }*/
 
+/*        public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+            int acresToPlant;
+            //2 bushels of grain for 1 acre of land
+            //1 person can farm 10 acres of land
+            int popPossible = acresOwned/10;
+            int bushPossible = bushels/2;
+            int possiblePlant;
+            boolean sane = false;
+            if (popPossible < bushPossible && popPossible < acresOwned){
+                possiblePlant = popPossible;
+            } else if (bushPossible < popPossible && bushPossible < acresOwned){
+                possiblePlant = bushPossible;
+            } else {
+                possiblePlant = acresOwned;
+            }
+            System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
+            acresToPlant = scanner.nextInt();
+            while(!sane){
+                if (possiblePlant < acresToPlant) {
+                    System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
+                } else if (bushels > acresOwned * 2) { //2 bushels per acre of land. Ensure there are enough bushels
+                    return acresToPlant;
+                } else if (acresToPlant > population * 10) {
+                    return acresToPlant;
+                }
+            }
+
+
+            return 0;   //just to get it to work DC
+        }*/
+
+        public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+
+            int acresToPlant;
+            int popPossible = acresOwned/10;
+            int bushPossible = bushels/2;
+            int possiblePlant;
+            boolean sane = false;
+            //Following code decides the possible limit based on lowest resource.
+            if (popPossible < bushPossible && popPossible < acresOwned){
+                possiblePlant = popPossible;
+            } else if (bushPossible < popPossible && bushPossible < acresOwned){
+                possiblePlant = bushPossible;
+            } else {
+                possiblePlant = acresOwned;
+            }
+            String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
+                    "The limit is "+ possiblePlant;
+            return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
+        }
         //public int playerChoices (int )
 
 
