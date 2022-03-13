@@ -29,12 +29,9 @@ import java.util.Scanner;
             new Hammurabi().playGame();
         }
 
-
         void playGame() {
             boolean GameOver = false;
             summary();
-
-
 
             while (year < 3 && !GameOver) {  //(year < 11 && !GameOver)
 
@@ -65,11 +62,13 @@ import java.util.Scanner;
                 acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
                 bushels -= acresPlanted*2;
 
-
-
                 if (uprising(population, starvationDeaths) == true) {
                     GameOver = true;
                 }
+
+
+
+
                 year++;
                 summary();
             }
@@ -87,7 +86,6 @@ import java.util.Scanner;
                 }
             }
         }
-
 
         public void summary(){
             System.out.println("O great Hammurabi!\n" +
@@ -269,11 +267,14 @@ import java.util.Scanner;
 
         public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
 
-            int acresToPlant;
             int popPossible = acresOwned/10;
             int bushPossible = bushels/2;
             int possiblePlant;
-            boolean sane = false;
+
+            if (population < popPossible){
+                popPossible = population;
+            }
+
             //Following code decides the possible limit based on lowest resource.
             if (popPossible < bushPossible && popPossible < acresOwned){
                 possiblePlant = popPossible;
@@ -284,7 +285,7 @@ import java.util.Scanner;
             }
             String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
                     "The limit is "+ possiblePlant;
-            return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
+            return sanityCheck("Acres", message, possiblePlant, 0);
         }
         //public int playerChoices (int )
 
