@@ -24,6 +24,8 @@ import java.util.Scanner;
         int acresSold;
         int bushelsToFeed;
         int acresPlanted;
+        int plagueBodies;
+        int bushlesForPlanting;
 
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
@@ -60,18 +62,33 @@ import java.util.Scanner;
                 bushels -= bushelsToFeed;
 
                 acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
-                bushels -= acresPlanted*2;
+                bushlesForPlanting = acresPlanted*2;
+                bushels -= bushlesForPlanting;
+
+                plagueBodies = plagueDeaths(population);
+                starvationDeaths = starvationDeaths(population, bushelsToFeed);
 
                 if (uprising(population, starvationDeaths) == true) {
                     GameOver = true;
+                    break;
                 }
 
+                immigrants = immigrants(population, acres, bushels);
+                population += immigrants;
 
+                harvest = harvest(acresPlanted, bushlesForPlanting);
+                bushels += harvest;
 
+                grainEatenByRats = grainEatenByRats(bushels);
+                bushels -= grainEatenByRats;
+
+                newCostOfLand = newCostOfLand();
 
                 year++;
                 summary();
             }
+
+            //Add a new gameOver here
 
         }
 
@@ -197,12 +214,13 @@ import java.util.Scanner;
         }
 
         public int sanityCheck(String resource,String message, int posAmnt, int resDmnd){
+
             boolean sane = false;
             //String message = ("O Great Hammurabi, how much " + resource + " do you wish to spend? We have " + resAmnt + " " + resource);
             int userInput;
             while(!sane){
                 userInput = getNumber(message);
-                if(posAmnt > userInput && userInput > 0){
+                if(posAmnt >= userInput && userInput > 0){
                     sane = true;
                     return userInput;
                 }
@@ -272,7 +290,7 @@ import java.util.Scanner;
             int possiblePlant;
 
             if (population < popPossible){
-                popPossible = population;
+                popPossible = population*10;
             }
 
             //Following code decides the possible limit based on lowest resource.
@@ -338,11 +356,11 @@ import java.util.Scanner;
         public int harvest(int acres, int bushelsUsedAsSeed){
             int ranNum = rand.nextInt(1, 6);
 
-            if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
-                return ranNum*bushelsUsedAsSeed;
-            } else {                                    //vice-versa
+            //           if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
+//                return ranNum*bushelsUsedAsSeed;
+//            } else {                                    //vice-versa
                 return ranNum*acres;
-            }
+//            }
         }
 
         public int grainEatenByRats(int bushels){
