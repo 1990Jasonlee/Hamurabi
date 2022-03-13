@@ -36,8 +36,7 @@ import java.util.Scanner;
             summary();
 
 
-
-            while (year < 10 && !GameOver) {  //(year < 11 && !GameOver)
+            while (year < 10 && !GameOver) {
 
                 System.out.println("O Great Hammurabi! It is a new year!\n" +
                         "Would you like to buy or sell land?");
@@ -70,10 +69,11 @@ import java.util.Scanner;
                     GameOver = true;
                 }
 
-
                 year++;
                 newCostOfLand();
                 grainEatenByRats(bushels);
+                immigrants(population,acres,bushels);
+                population += immigrants;
                 summary();
             }
 
@@ -329,11 +329,13 @@ import java.util.Scanner;
 
             if (newComers > 0) {
                 //System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
-                return newComers;
+                immigrants += newComers;
+                return immigrants;
             }
             else {
                 //System.out.println("Oh Great Hammurabi! We have no new immigrants.");
-                return 0;
+                immigrants += 0;
+                return immigrants;
             }
         }
 
