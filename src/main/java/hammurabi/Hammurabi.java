@@ -3,62 +3,62 @@ import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
 import java.util.Scanner;
 
-public class Hammurabi {         // must save in a file named Hammurabi.java
-    Random rand = new Random();  // this is an instance variable
-    Scanner scanner = new Scanner(System.in);
+    public class Hammurabi {         // must save in a file named Hammurabi.java
+        Random rand = new Random();  // this is an instance variable
+        Scanner scanner = new Scanner(System.in);
 
-    int year = 1;
-    int starvationDeaths = 0;
-    int immigrants = 5;
-    int population = 100;
-    int harvest = 3000;
-    int acres = 1000;
-    int grainEatenByRats = 200;
-    int bushels = 3000;
-    int newCostOfLand = 19;
-    int acresToBuy = 0;
+        int year = 1;
+        int starvationDeaths = 0;
+        int immigrants = 5;
+        int population = 100;
+        int harvest = 3000;
+        int acres = 1000;
+        int grainEatenByRats = 200;
+        int bushels = 3000;
+        int newCostOfLand = 19;
+        int acresToBuy = 0;
 
-    //New variables
+        //New variables
 
-    int bushelsSpent;
-    int buyOrSell;
-    int acresSold;
-    int bushelsToFeed;
-    int acresPlanted;
-    int plagueBodies;
-    int bushlesForPlanting;
+        int bushelsSpent;
+        int buyOrSell;
+        int acresSold;
+        int bushelsToFeed;
+        int acresPlanted;
+        int plagueBodies;
+        int bushelsForPlanting;
 
-    public static void main(String[] args) { // required in every Java program
-        new Hammurabi().playGame();
-    }
+        public static void main(String[] args) { // required in every Java program
+            new Hammurabi().playGame();
+        }
 
-    void playGame() {
-        boolean GameOver = false;
-        summary();
+        void playGame() {
+            boolean GameOver = false;
+            summary();
 
-        while (year < 11 && !GameOver) {
+            while (year < 10 && !GameOver) {
 
 
-            System.out.println("O Great Hammurabi! It is a new year!\n" +
-                    "Would you like to buy or sell land?");
+                System.out.println("O Great Hammurabi! It is a new year!\n" +
+                        "Would you like to buy or sell land?");
 
-            while(true) {
-                buyOrSell = getNumber("Enter 1 to Buy \nEnter 2 to Sell\n");
-                if (buyOrSell == 1) {
-                    bushelsSpent = askHowManyAcresToBuy(newCostOfLand, bushels);
-                    acres = acres + (bushels - bushelsSpent) / newCostOfLand;
-                    bushels = bushelsSpent;
-                    break;
-                } else if (buyOrSell == 2){
-                    acresSold = askHowManyAcresToSell(acres);
-                    acres -= acresSold;
-                    bushels += acresSold * newCostOfLand;
-                    break;
-                } else {
-                    System.out.println("Appoligies Great Hammurabi, I did not understand you!\n" +
-                            "Would you like to buy or sell land?\n");
+                while(true) {
+                    buyOrSell = getNumber("Enter 1 to Buy \nEnter 2 to Sell\n");
+                    if (buyOrSell == 1) {
+                        bushelsSpent = askHowManyAcresToBuy(newCostOfLand, bushels);
+                        acres = acres + (bushels - bushelsSpent) / newCostOfLand;
+                        bushels = bushelsSpent;
+                        break;
+                    } else if (buyOrSell == 2){
+                        acresSold = askHowManyAcresToSell(acres);
+                        acres -= acresSold;
+                        bushels += acresSold * newCostOfLand;
+                        break;
+                    } else {
+                        System.out.println("Apologies Great Hammurabi, I did not understand you!\n" +
+                                "Would you like to buy or sell land?\n");
+                    }
                 }
-            }
 
             bushelsToFeed = askHowMuchGrainToFeedPeople(bushels);
             System.out.println(bushelsToFeed);
@@ -296,6 +296,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int popPossible = acresOwned/10;
         int bushPossible = bushels/2;
         int possiblePlant;
+
 
         if (population < popPossible){
             popPossible = population*10;
