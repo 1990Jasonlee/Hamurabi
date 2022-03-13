@@ -110,7 +110,7 @@ import java.util.Scanner;
 
                 summary();
             }
-
+            finalSummary();
             //Add a new gameOver here
 
         }
@@ -141,9 +141,10 @@ import java.util.Scanner;
 
         public void finalSummary() {
 
-            System.out.println("O great Hammurabi!\n" +
+            System.out.println("O Hammurabi!\n" +
                     "In only year " + year + " of your rule,\n" +
-                    "you have created a disaster, you have been overthrown as ruler.");
+                    "you have created a disaster, you have been overthrown as ruler.\n"+
+                    "GAME OVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             System.out.println("O great Hammurabi!\n" +
                     "After " + year + " of your rule.\n" +
