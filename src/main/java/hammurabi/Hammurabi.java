@@ -65,24 +65,22 @@ import java.util.Scanner;
             bushels -= bushelsToFeed;
 
             acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
-            bushlesForPlanting = acresPlanted*2;
-            bushels -= bushlesForPlanting;
+            bushelsForPlanting = acresPlanted*2;
+            bushels -= bushelsForPlanting;
 
             starvationDeaths = starvationDeaths(population, bushelsToFeed);
             System.out.println(starvationDeaths);
-            if (uprising(population, starvationDeaths) == true) {
-                plagueBodies = plagueDeaths(population);        //Supposed to be elsewhere, not in the if statement
-//                System.out.println("O great Hammurabi! The population has deemed you unfit for rule! You must Flee! \n" +
-//                                "\n Game Over");
+
+            if (uprising(population, starvationDeaths)) {
+                plagueBodies = plagueDeaths(population);
                 GameOver = true;
                 break;
             }
 
-
             immigrants = immigrants(population, acres, bushels);
             population += immigrants;
 
-            harvest = harvest(acresPlanted, bushlesForPlanting);
+            harvest = harvest(acresPlanted);
             bushels += harvest;
 
             grainEatenByRats = grainEatenByRats(bushels);
@@ -120,7 +118,7 @@ import java.util.Scanner;
                 "In the previous year " + starvationDeaths + " people starved to death.\n" +
                 "In the previous year "+ immigrants +" people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
-                "We harvested "+ harvest +" bushels at " + (harvest/acresPlanted) + " bushels per acre.\n" +
+                "We harvested "+ harvest +" bushels at " + (harvest/acres) + " bushels per acre.\n" +
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushels-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.\n" +
@@ -367,18 +365,18 @@ import java.util.Scanner;
         }
     }
 
-    public int harvest(int acres, int bushelsUsedAsSeed){
-        int ranNum = rand.nextInt(1, 6);
+    public int harvest(int acresPlanted){
+        int ranNum = rand.nextInt(1, 7);
 
         //           if ( acres > bushelsUsedAsSeed){            //If more acres than bushelsUsedAsSeed
 //                return ranNum*bushelsUsedAsSeed;
 //            } else {                                    //vice-versa
-        return ranNum*acres;
+        return ranNum*acresPlanted;
 //            }
     }
 
     public int grainEatenByRats(int bushels){
-        int ranNum = rand.nextInt(0, 100);
+        int ranNum = rand.nextInt(0, 101);
 
         if (ranNum <= 40){
             int EatenByRats = (rand.nextInt(10, 31)*bushels)/100;
