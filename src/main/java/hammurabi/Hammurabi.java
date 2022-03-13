@@ -73,6 +73,7 @@ import java.util.Scanner;
 
                 year++;
                 newCostOfLand();
+                grainEatenByRats(bushels);
                 summary();
             }
 
@@ -348,12 +349,15 @@ import java.util.Scanner;
 
         public int grainEatenByRats(int bushels){
             int ranNum = rand.nextInt(0, 100);
-            if (ranNum >= 40){
-                int grainEatenByRats = rand.nextInt(10, 30)*bushels;
+            if (ranNum <= 40){
+                int EatenByRats = rand.nextInt(10, 30*(bushels/100));
                 //System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
-                return rand.nextInt(10, 30) * bushels;
+                bushels -= EatenByRats;
+                grainEatenByRats = EatenByRats;
+                return grainEatenByRats;
             }else{
-                return 0;
+                grainEatenByRats = 0;
+                return grainEatenByRats;
             }
         }
 
