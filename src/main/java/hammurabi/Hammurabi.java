@@ -7,7 +7,7 @@ import java.util.Scanner;
         Random rand = new Random();  // this is an instance variable
         Scanner scanner = new Scanner(System.in);
 
-        int year = 0;
+        int year = 1;
         int starvationDeaths = 0;
         int immigrants = 5;
         int population = 100;
@@ -37,7 +37,7 @@ import java.util.Scanner;
 
 
 
-            while (year < 3 && !GameOver) {  //(year < 11 && !GameOver)
+            while (year < 10 && !GameOver) {  //(year < 11 && !GameOver)
 
                 System.out.println("O Great Hammurabi! It is a new year!\n" +
                         "Would you like to buy or sell land?");
@@ -46,7 +46,7 @@ import java.util.Scanner;
                     buyOrSell = getNumber("Enter 1 to Buy \nEnter 2 to Sell\n");
                     if (buyOrSell == 1) {
                         bushelsSpent = askHowManyAcresToBuy(newCostOfLand, bushels);
-                        acresToBuy = (bushels - bushelsSpent) / newCostOfLand;
+                        acres = acres + (bushels - bushelsSpent) / newCostOfLand;
                         bushels = bushelsSpent;
                         break;
                     } else if (buyOrSell == 2){
@@ -66,16 +66,13 @@ import java.util.Scanner;
                 acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
                 bushels -= acresPlanted*2;
 
-
-
-
-
                 if (uprising(population, starvationDeaths) == true) {
                     GameOver = true;
                 }
 
 
                 year++;
+                newCostOfLand();
                 summary();
             }
 
@@ -288,7 +285,7 @@ import java.util.Scanner;
                 possiblePlant = acresOwned;
             }
             String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
-                    "The limit is "+ possiblePlant;
+                    "The limit is "+ possiblePlant +".\n";
             return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
         }
         //public int playerChoices (int )
@@ -363,6 +360,7 @@ import java.util.Scanner;
         public int newCostOfLand(){
             int costOfLand = rand.nextInt(17, 23);
             //System.out.println("The cost of land is now " + costOfLand + " bushels per acre");
-            return costOfLand;
+            newCostOfLand = costOfLand;
+            return newCostOfLand;
         }
     }
