@@ -7,7 +7,7 @@ import java.util.Scanner;
         Random rand = new Random();  // this is an instance variable
         Scanner scanner = new Scanner(System.in);
 
-        int year = 0;
+        int year = 1;
         int starvationDeaths = 0;
         int immigrants = 5;
         int population = 100;
@@ -19,6 +19,7 @@ import java.util.Scanner;
         int acresToBuy = 0;
 
         //New variables
+
         int bushelsSpent;
         int buyOrSell;
         int acresSold;
@@ -35,7 +36,8 @@ import java.util.Scanner;
             boolean GameOver = false;
             summary();
 
-            while (year < 3 && !GameOver) {  //(year < 11 && !GameOver)
+            while (year < 10 && !GameOver) {
+
 
                 System.out.println("O Great Hammurabi! It is a new year!\n" +
                         "Would you like to buy or sell land?");
@@ -44,7 +46,7 @@ import java.util.Scanner;
                     buyOrSell = getNumber("Enter 1 to Buy \nEnter 2 to Sell\n");
                     if (buyOrSell == 1) {
                         bushelsSpent = askHowManyAcresToBuy(newCostOfLand, bushels);
-                        acresToBuy = (bushels - bushelsSpent) / newCostOfLand;
+                        acres = acres + (bushels - bushelsSpent) / newCostOfLand;
                         bushels = bushelsSpent;
                         break;
                     } else if (buyOrSell == 2){
@@ -65,13 +67,16 @@ import java.util.Scanner;
                 bushlesForPlanting = acresPlanted*2;
                 bushels -= bushlesForPlanting;
 
+
+                if (uprising(population, starvationDeaths) == true) {
+
                 plagueBodies = plagueDeaths(population);
                 starvationDeaths = starvationDeaths(population, bushelsToFeed);
-
-                if (uprising(population, starvationDeaths)) {
+                  
                     GameOver = true;
                     break;
                 }
+
 
                 immigrants = immigrants(population, acres, bushels);
                 population += immigrants;
@@ -85,6 +90,10 @@ import java.util.Scanner;
                 newCostOfLand = newCostOfLand();
 
                 year++;
+                newCostOfLand();
+                grainEatenByRats(bushels);
+                immigrants(population,acres,bushels);
+                population += immigrants;
                 summary();
             }
 
@@ -300,8 +309,10 @@ import java.util.Scanner;
                 possiblePlant = acresOwned;
             }
             String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
-                    "The limit is "+ possiblePlant;
-            return sanityCheck("Acres", message, possiblePlant, 0);
+
+                    "The limit is "+ possiblePlant +".\n";
+            return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
+
         }
         //public int playerChoices (int )
 
@@ -343,11 +354,13 @@ import java.util.Scanner;
 
             if (newComers > 0) {
                 //System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
-                return newComers;
+                immigrants += newComers;
+                return immigrants;
             }
             else {
                 //System.out.println("Oh Great Hammurabi! We have no new immigrants.");
-                return 0;
+                immigrants += 0;
+                return immigrants;
             }
         }
 
@@ -363,18 +376,24 @@ import java.util.Scanner;
 
         public int grainEatenByRats(int bushels){
             int ranNum = rand.nextInt(0, 100);
-            if (ranNum >= 40){
 
+            if (ranNum <= 40){
+                int EatenByRats = rand.nextInt(10, 30*(bushels/100));
                 //System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
-                return (rand.nextInt(10, 30) * bushels)/100;
+                bushels -= EatenByRats;
+                grainEatenByRats = EatenByRats;
+                return grainEatenByRats;
+
             }else{
-                return 0;
+                grainEatenByRats = 0;
+                return grainEatenByRats;
             }
         }
 
         public int newCostOfLand(){
             int costOfLand = rand.nextInt(17, 23);
             //System.out.println("The cost of land is now " + costOfLand + " bushels per acre");
-            return costOfLand;
+            newCostOfLand = costOfLand;
+            return newCostOfLand;
         }
     }
