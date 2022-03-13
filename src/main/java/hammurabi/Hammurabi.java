@@ -341,7 +341,7 @@ import java.util.Scanner;
                 System.out.println("O Great Hammurabi, we've experienced a plague! Half the population has died!");
                 return population / 2;
             } else {
-                System.out.println("O Great Hammurabi, another year without the plague!");
+                //System.out.println("O Great Hammurabi, another year without the plague!");
                 return 0;
             }
         }
