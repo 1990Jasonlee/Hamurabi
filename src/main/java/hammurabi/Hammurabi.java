@@ -71,9 +71,9 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             starvationDeaths = starvationDeaths(population, bushelsToFeed);
             System.out.println(starvationDeaths);
             if (uprising(population, starvationDeaths) == true) {
-
-                plagueBodies = plagueDeaths(population);
-
+                plagueBodies = plagueDeaths(population);        //Supposed to be elsewhere, not in the if statement
+//                System.out.println("O great Hammurabi! The population has deemed you unfit for rule! You must Flee! \n" +
+//                                "\n Game Over");
                 GameOver = true;
                 break;
             }
@@ -120,7 +120,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 "In the previous year " + starvationDeaths + " people starved to death.\n" +
                 "In the previous year "+ immigrants +" people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
-                "We harvested "+ harvest +" bushels at " + (harvest/acres) + " bushels per acre.\n" +
+                "We harvested "+ harvest +" bushels at " + (harvest/acresPlanted) + " bushels per acre.\n" +
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushels-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.\n" +
@@ -344,6 +344,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public boolean uprising(int population, int howManyPeopleStarved){
         double ratio = (double) howManyPeopleStarved / (double) population;
         if (ratio > 0.45 ){
+            System.out.println("Up rising!");
             return true;
         } else {
             return false;
