@@ -83,9 +83,12 @@ import java.util.Scanner;
                 }
 
                 if (starvationDeaths == 0) {
-                immigrants = immigrants(population, acres, bushels);
-                immigrantsSum += immigrants;
-                population += immigrants;}
+                    immigrants = immigrants(population, acres, bushels);
+                    immigrantsSum += immigrants;
+                    population += immigrants;
+                } else {
+                    immigrants = 0;
+                }
 
                 population -= plagueBodies;
 
@@ -339,7 +342,7 @@ import java.util.Scanner;
                 return population / 2;
             } else {
                 System.out.println("O Great Hammurabi, another year without the plague!");
-                return population;
+                return 0;
             }
         }
 
@@ -355,7 +358,9 @@ import java.util.Scanner;
         }
 
         public boolean uprising(int population, int howManyPeopleStarved) {
-            double ratio = (double) howManyPeopleStarved / (double) population;
+            double dPop = population;
+            double dStarv = howManyPeopleStarved;
+            double ratio = howManyPeopleStarved / population;
             if (ratio > 0.45) {
                 return true;
             } else {
@@ -368,12 +373,10 @@ import java.util.Scanner;
 
             if (newComers > 0) {
                 //System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
-                immigrants += newComers;
-                return immigrants;
+                return newComers;
             } else {
                 //System.out.println("Oh Great Hammurabi! We have no new immigrants.");
-                immigrants += 0;
-                return immigrants;
+                return 0;
             }
         }
 
