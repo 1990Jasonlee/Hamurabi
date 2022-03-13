@@ -39,7 +39,7 @@ import java.util.Scanner;
             boolean GameOver = false;
             summary();
 
-            while (year < 11 && !GameOver) {
+            while (year < 10 && !GameOver) {
 
 
                 System.out.println("O Great Hammurabi! It is a new year!\n" +
@@ -107,10 +107,17 @@ import java.util.Scanner;
                 bushels -= grainEatenByRats;
 
                 newCostOfLand = newCostOfLand();
+
+                if(year == 10){
+                    newCostOfLand();
+                    grainEatenByRats(bushels);
+                    summary();
+                    break;
+                }
                 year++;
+
                 newCostOfLand();
                 grainEatenByRats(bushels);
-
 
                 summary();
             }
