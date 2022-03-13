@@ -19,6 +19,7 @@ import java.util.Scanner;
         int acresToBuy = 0;
 
         //New variables
+
         int bushelsSpent;
         int buyOrSell;
         int acresSold;
@@ -67,9 +68,13 @@ import java.util.Scanner;
 
 
 
+
+
                 if (uprising(population, starvationDeaths) == true) {
                     GameOver = true;
                 }
+
+
                 year++;
                 summary();
             }
