@@ -106,7 +106,6 @@ import java.util.Scanner;
                 }
             }
                 return bushels;
-
         }
 
 
