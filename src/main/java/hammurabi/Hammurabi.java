@@ -90,6 +90,7 @@ import java.util.Scanner;
                     immigrants = 0;
                 }
 
+                population -= starvationDeaths;
                 population -= plagueBodies;
 
                 harvest = harvest(acresPlanted);
@@ -358,9 +359,8 @@ import java.util.Scanner;
         }
 
         public boolean uprising(int population, int howManyPeopleStarved) {
-            double dPop = population;
-            double dStarv = howManyPeopleStarved;
-            double ratio = howManyPeopleStarved / population;
+
+            double ratio = (double) howManyPeopleStarved / (double) population;
             if (ratio > 0.45) {
                 return true;
             } else {
