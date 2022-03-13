@@ -68,7 +68,7 @@ import java.util.Scanner;
                 plagueBodies = plagueDeaths(population);
                 starvationDeaths = starvationDeaths(population, bushelsToFeed);
 
-                if (uprising(population, starvationDeaths) == true) {
+                if (uprising(population, starvationDeaths)) {
                     GameOver = true;
                     break;
                 }
@@ -173,8 +173,6 @@ import java.util.Scanner;
 
         }
 
-
-
 /*        public int askHowManyAcresToSell(int acresOwned) {
             int acresToSell;
             System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
@@ -220,7 +218,7 @@ import java.util.Scanner;
             int userInput;
             while(!sane){
                 userInput = getNumber(message);
-                if(posAmnt >= userInput && userInput > 0){
+                if(posAmnt >= userInput && userInput >= 0){
                     sane = true;
                     return userInput;
                 }
@@ -322,17 +320,17 @@ import java.util.Scanner;
 
         public int starvationDeaths(int population, int bushelsFedtoPeople){
 
-            if(bushelsFedtoPeople%population != 0){
-                System.out.println("O Great Hammurabi! Sad news! We have lost " + bushelsFedtoPeople%population + " due to starvation!");
-                return bushelsFedtoPeople%population;
+            if((bushelsFedtoPeople/20)%population != 0){
+                System.out.println("O Great Hammurabi! Sad news! We have lost " + (population - (bushelsFedtoPeople/20)) + " due to starvation!");
+                return population - (bushelsFedtoPeople/20);
             } else {
                 System.out.println("O Great Hammurabi! Huzzah, no one has died from starvation!");
-                return bushelsFedtoPeople%population;
+                return 0;
             }
         }
 
         public boolean uprising(int population, int howManyPeopleStarved){
-            double ratio = howManyPeopleStarved/population;
+            double ratio = (double) howManyPeopleStarved /population;
             if (ratio > 0.45 ){
                 return true;
             } else {
@@ -366,9 +364,9 @@ import java.util.Scanner;
         public int grainEatenByRats(int bushels){
             int ranNum = rand.nextInt(0, 100);
             if (ranNum >= 40){
-                int grainEatenByRats = rand.nextInt(10, 30)*bushels;
+
                 //System.out.println("Infestation! Rats have eaten " + grainEatenByRats + " bushels!");
-                return rand.nextInt(10, 30) * bushels;
+                return (rand.nextInt(10, 30) * bushels)/100;
             }else{
                 return 0;
             }
