@@ -311,7 +311,7 @@ import java.util.Scanner;
             String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
 
                     "The limit is "+ possiblePlant +".\n";
-            return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
+            return sanityCheck("Acres", message, possiblePlant, 0);
 
         }
         //public int playerChoices (int )
