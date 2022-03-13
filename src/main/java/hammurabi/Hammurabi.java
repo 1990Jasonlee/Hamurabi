@@ -75,7 +75,6 @@ import java.util.Scanner;
                 population -= plagueBodies;
 
                 starvationDeaths = starvationDeaths(population, bushelsToFeed);
-                System.out.println(starvationDeaths);
                 if (uprising(population, starvationDeaths) == true) {
 //                System.out.println("O great Hammurabi! The population has deemed you unfit for rule! You must Flee! \n" +
 //                                "\n Game Over");
@@ -83,9 +82,10 @@ import java.util.Scanner;
                     break;
                 }
 
+                if (starvationDeaths == 0) {
                 immigrants = immigrants(population, acres, bushels);
                 immigrantsSum += immigrants;
-                population += immigrants;
+                population += immigrants;}
 
                 harvest = harvest(acresPlanted);
                 bushels += harvest;
@@ -101,12 +101,10 @@ import java.util.Scanner;
                 bushels -= grainEatenByRats;
 
                 newCostOfLand = newCostOfLand();
-
                 year++;
                 newCostOfLand();
                 grainEatenByRats(bushels);
-                immigrants(population, acres, bushels);
-                population += immigrants;
+
 
                 summary();
             }
@@ -334,7 +332,7 @@ import java.util.Scanner;
         //The methods for random events!
         public int plagueDeaths(int population) {
             int plagueChance = rand.nextInt(100);
-            if (plagueChance >= 15) {
+            if (plagueChance <= 15) {
                 System.out.println("O Great Hammurabi, we've experienced a plague! Half the population has died!");
                 return population / 2;
             } else {
@@ -357,7 +355,6 @@ import java.util.Scanner;
         public boolean uprising(int population, int howManyPeopleStarved) {
             double ratio = (double) howManyPeopleStarved / (double) population;
             if (ratio > 0.45) {
-                System.out.println("Up rising!");
                 return true;
             } else {
                 return false;
@@ -365,7 +362,7 @@ import java.util.Scanner;
         }
 
         public int immigrants(int population, int acresOwned, int grainInStorage) {
-            int newComers = (20 * acresOwned + grainInStorage) / (100 * population) + 1;
+            int newComers = (20 * acresOwned + grainInStorage) / (100 * population)+1;
 
             if (newComers > 0) {
                 //System.out.println("Oh Great Hammurabi! Huzzah, we have " + newComers + " new immigrants!");
