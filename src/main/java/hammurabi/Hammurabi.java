@@ -140,12 +140,12 @@ import java.util.Scanner;
         }
 
         public void finalSummary() {
-
-            System.out.println("O Hammurabi!\n" +
-                    "In only year " + year + " of your rule,\n" +
-                    "you have created a disaster, you have been overthrown as ruler.\n"+
-                    "GAME OVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
+            if (uprising(population,starvationDeaths)) {
+                System.out.println("O Hammurabi!\n" +
+                        "In only year " + year + " of your rule,\n" +
+                        "you have created a disaster, you have been overthrown as ruler.\n" +
+                        "GAME OVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            }else
             System.out.println("O great Hammurabi!\n" +
                     "After " + year + " of your rule.\n" +
                     "In your " + year + "rule, " + immigrantsSum + " people entered the kingdom.\n" +
