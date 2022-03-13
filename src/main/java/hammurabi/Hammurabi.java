@@ -72,23 +72,6 @@ import java.util.Scanner;
         //other methods go here
 
 
-        //Starting methods that ask for user input
-        //Asks the player how many acres of land to buy, and returns that number.
-/*        public int askHowManyAcresToBuy(int price, int bushels) {
-            int acresToBuy;
-
-            String message = ("O Great Hammurabi, how many acres of land do you wish to buy?");
-            acresToBuy = getNumber(message);
-
-            if (bushels < price) {
-                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.");
-            } else {
-                return acresToBuy;
-            }
-
-            return 0;//just to get it to work DC
-        }*/
-
         public int askHowManyAcresToBuy(int price, int bushels) {
             boolean start = true;
 
@@ -109,19 +92,6 @@ import java.util.Scanner;
         }
 
 
-
-/*        public int askHowManyAcresToSell(int acresOwned) {
-            int acresToSell;
-            System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
-            acresToSell = scanner.nextInt();
-
-            if (acresToSell > acresOwned) {
-                System.out.println("O Great Hammurabi, surely you jest! We only have" + acresOwned + " acres of land.");
-            } else {
-                return acresToSell;
-            }
-            return 0;
-        }*/
 
         public int askHowManyAcresToSell(int acresOwned) {
             System.out.println("O Great Hammurabi, how many acres of land do you wish to sell?");
