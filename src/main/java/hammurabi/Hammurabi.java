@@ -72,7 +72,7 @@ import java.util.Scanner;
                 bushels -= bushelsForPlanting;
 
                 plagueBodies = plagueDeaths(population);        //Supposed to be elsewhere, not in the if statement
-                population -= plagueBodies;
+
 
                 starvationDeaths = starvationDeaths(population, bushelsToFeed);
                 if (uprising(population, starvationDeaths) == true) {
@@ -86,6 +86,8 @@ import java.util.Scanner;
                 immigrants = immigrants(population, acres, bushels);
                 immigrantsSum += immigrants;
                 population += immigrants;}
+
+                population -= plagueBodies;
 
                 harvest = harvest(acresPlanted);
                 bushels += harvest;
