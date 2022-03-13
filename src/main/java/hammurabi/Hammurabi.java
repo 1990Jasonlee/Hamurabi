@@ -28,6 +28,8 @@ import java.util.Scanner;
         int acresPlanted;
         int plagueBodies;
         int bushelsForPlanting;
+        int harvestRatio = 3;
+        int immigrantsSum = 5;
 
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
@@ -37,7 +39,7 @@ import java.util.Scanner;
             boolean GameOver = false;
             summary();
 
-            while (year < 10 && !GameOver) {
+            while (year < 11 && !GameOver) {
 
 
                 System.out.println("O Great Hammurabi! It is a new year!\n" +
@@ -69,23 +71,31 @@ import java.util.Scanner;
                 bushelsForPlanting = acresPlanted * 2;
                 bushels -= bushelsForPlanting;
 
+                plagueBodies = plagueDeaths(population);        //Supposed to be elsewhere, not in the if statement
+                population -= plagueBodies;
 
                 starvationDeaths = starvationDeaths(population, bushelsToFeed);
                 System.out.println(starvationDeaths);
                 if (uprising(population, starvationDeaths) == true) {
-                    plagueBodies = plagueDeaths(population);        //Supposed to be elsewhere, not in the if statement
 //                System.out.println("O great Hammurabi! The population has deemed you unfit for rule! You must Flee! \n" +
 //                                "\n Game Over");
                     GameOver = true;
                     break;
                 }
 
-
                 immigrants = immigrants(population, acres, bushels);
+                immigrantsSum += immigrants;
                 population += immigrants;
 
                 harvest = harvest(acresPlanted);
                 bushels += harvest;
+
+                if (acresPlanted == 0){
+                    harvestRatio = 0;
+                } else {
+                    harvestRatio = harvest/acresPlanted;
+                }
+
 
                 grainEatenByRats = grainEatenByRats(bushels);
                 bushels -= grainEatenByRats;
@@ -122,7 +132,7 @@ import java.util.Scanner;
                     "In the previous year " + starvationDeaths + " people starved to death.\n" +
                     "In the previous year " + immigrants + " people entered the kingdom.\n" +
                     "The population is now " + population + ".\n" +
-                    "We harvested " + harvest + " bushels at " + (harvest / acres) + " bushels per acre.\n" +
+                    "We harvested " + harvest + " bushels at " + (harvestRatio) + " bushels per acre.\n" +
                     "Rats destroyed " + grainEatenByRats + " bushels, leaving " + (bushels - grainEatenByRats) + " bushels in storage.\n" +
                     "The city owns " + acres + " acres of land.\n" +
                     "Land is currently worth " + newCostOfLand + " bushels per acre.\n" +
@@ -137,7 +147,7 @@ import java.util.Scanner;
 
             System.out.println("O great Hammurabi!\n" +
                     "After " + year + " of your rule.\n" +
-                    "In your " + year + "rule, " + immigrants + " people entered the kingdom.\n" +
+                    "In your " + year + "rule, " + immigrantsSum + " people entered the kingdom.\n" +
                     "The city owns " + acres + " acres of land.\n" +
                     "Congratulations on your retirement");
         }
