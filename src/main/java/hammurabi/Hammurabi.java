@@ -16,6 +16,8 @@ import java.util.Scanner;
         int grainEatenByRats = 200;
         int bushels = 3000;
         int newCostOfLand = 19;
+        int acresToBuy = 0;
+
 
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
@@ -26,7 +28,8 @@ import java.util.Scanner;
             boolean GameOver = false;
             summary();
             while (year < 11 && !GameOver) {  //(year < 11 && !GameOver)
-                bushels -= askHowMuchGrainToFeedPeople(bushels);
+                askHowManyAcresToBuy(newCostOfLand, bushels);
+                //bushels -= askHowMuchGrainToFeedPeople(bushels);
                 //askHowManyAcresToBuy(newCostOfLand(), bushels);
 
 
@@ -87,19 +90,26 @@ import java.util.Scanner;
         }*/
 
         public int askHowManyAcresToBuy(int price, int bushels) {
-            int acresToBuy;
+            boolean start = true;
 
-            String message = ("O Great Hammurabi, how many acres of land do you wish to buy?");
-            acresToBuy = getNumber(message);
-
-            if (bushels < price) {
-                System.out.println("O Great Hammurabi, surely you jest! We only have" + bushels + " bushels left.");
-            } else {
-                return acresToBuy;
+            while (start = true) {
+                System.out.println("O Great Hammurabi, how many acres of land do you wish to buy?");
+                acresToBuy = scanner.nextInt();
+                price = newCostOfLand * acresToBuy;
+                if (bushels > price) {
+                    bushels -= price;
+                    System.out.println("Total price cost " + price + " bushels.");
+                    System.out.println("You have " + bushels + " bushels.");
+                    break;
+                } else {
+                    System.out.println("O Great Hammurabi, surely you jest! We only have " + bushels + " bushels left. That would cost " + price + " bushels.");
+                }
             }
+                return bushels;
 
-            return 0;//just to get it to work DC
         }
+
+
 
 /*        public int askHowManyAcresToSell(int acresOwned) {
             int acresToSell;
