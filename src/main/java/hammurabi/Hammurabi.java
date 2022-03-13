@@ -14,7 +14,7 @@ import java.util.Scanner;
         int harvest = 3000;
         int acres = 1000;
         int grainEatenByRats = 200;
-        int bushels = 3000;
+        int bushels = 2800;
         int newCostOfLand = 19;
         int acresToBuy = 0;
 
