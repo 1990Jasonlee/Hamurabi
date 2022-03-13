@@ -26,7 +26,7 @@ import java.util.Scanner;
         int bushelsToFeed;
         int acresPlanted;
         int plagueBodies;
-        int bushlesForPlanting;
+        int bushelsForPlanting;
 
         public static void main(String[] args) { // required in every Java program
             new Hammurabi().playGame();
@@ -55,7 +55,7 @@ import java.util.Scanner;
                         bushels += acresSold * newCostOfLand;
                         break;
                     } else {
-                        System.out.println("Appoligies Great Hammurabi, I did not understand you!\n" +
+                        System.out.println("Apologies Great Hammurabi, I did not understand you!\n" +
                                 "Would you like to buy or sell land?\n");
                     }
                 }
@@ -64,8 +64,8 @@ import java.util.Scanner;
                 bushels -= bushelsToFeed;
 
                 acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
-                bushlesForPlanting = acresPlanted*2;
-                bushels -= bushlesForPlanting;
+                bushelsForPlanting = acresPlanted*2;
+                bushels -= bushelsForPlanting;
 
 
                 if (uprising(population, starvationDeaths) == true) {
@@ -81,7 +81,7 @@ import java.util.Scanner;
                 immigrants = immigrants(population, acres, bushels);
                 population += immigrants;
 
-                harvest = harvest(acresPlanted, bushlesForPlanting);
+                harvest = harvest(acresPlanted, bushelsForPlanting);
                 bushels += harvest;
 
                 grainEatenByRats = grainEatenByRats(bushels);
@@ -311,7 +311,7 @@ import java.util.Scanner;
             String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
 
                     "The limit is "+ possiblePlant +".\n";
-            return acresToPlant = sanityCheck("Acres", message, possiblePlant, 0);
+            return acresPlanted = sanityCheck("Acres", message, possiblePlant, 0);
 
         }
         //public int playerChoices (int )
