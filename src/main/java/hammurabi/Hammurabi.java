@@ -290,14 +290,13 @@ import java.util.Scanner;
         }*/
 
     public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+                                                //Calculate possible based on resources
+        int popPossible = acresOwned/10;        //Possible to farm based on population
+        int bushPossible = bushels/2;           //Possible to farm based on bushes
+        int possiblePlant;                      //Possible to plant
 
-        int popPossible = acresOwned/10;
-        int bushPossible = bushels/2;
-        int possiblePlant;
-
-
-        if (population < popPossible){
-            popPossible = population*10;
+        if (population < popPossible){          //If population is less than possible of bushels
+            popPossible = population*10;        //Set as new possible amount to plant
         }
 
         //Following code decides the possible limit based on lowest resource.
@@ -308,6 +307,7 @@ import java.util.Scanner;
         } else {
             possiblePlant = acresOwned;
         }
+
         String message = "O Great Hammurabi! How much acres would you like to plant? \n" +
 
                 "The limit is "+ possiblePlant +".\n";
