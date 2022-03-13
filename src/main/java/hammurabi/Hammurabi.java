@@ -18,6 +18,7 @@ import java.util.Scanner;
         int newCostOfLand = 19;
         int acresToBuy = 0;
 
+
         //New variables
 
         int bushelsSpent;
@@ -67,6 +68,7 @@ import java.util.Scanner;
                 acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
                 bushelsForPlanting = acresPlanted * 2;
                 bushels -= bushelsForPlanting;
+
 
                 starvationDeaths = starvationDeaths(population, bushelsToFeed);
                 System.out.println(starvationDeaths);
