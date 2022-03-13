@@ -18,6 +18,7 @@ import java.util.Scanner;
         int newCostOfLand = 19;
         int acresToBuy = 0;
 
+
         //New variables
 
         int bushelsSpent;
@@ -65,8 +66,8 @@ import java.util.Scanner;
             bushels -= bushelsToFeed;
 
             acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
-            bushlesForPlanting = acresPlanted*2;
-            bushels -= bushlesForPlanting;
+            bushelsForPlanting = acresPlanted*2;
+            bushels -= bushelsForPlanting;
 
             starvationDeaths = starvationDeaths(population, bushelsToFeed);
             System.out.println(starvationDeaths);
@@ -82,7 +83,7 @@ import java.util.Scanner;
             immigrants = immigrants(population, acres, bushels);
             population += immigrants;
 
-            harvest = harvest(acresPlanted, bushlesForPlanting);
+            harvest = harvest(acresPlanted, bushelsForPlanting);
             bushels += harvest;
 
             grainEatenByRats = grainEatenByRats(bushels);
@@ -97,7 +98,7 @@ import java.util.Scanner;
             population += immigrants;
             summary();
         }
-
+            finalSummary();
         //Add a new gameOver here
 
     }
@@ -120,7 +121,7 @@ import java.util.Scanner;
                 "In the previous year " + starvationDeaths + " people starved to death.\n" +
                 "In the previous year "+ immigrants +" people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
-                "We harvested "+ harvest +" bushels at " + (harvest/acresPlanted) + " bushels per acre.\n" +
+                "We harvested "+ harvest +" bushels at " + (harvest/acres) + " bushels per acre.\n" +
                 "Rats destroyed "+ grainEatenByRats + " bushels, leaving "+ (bushels-grainEatenByRats) +" bushels in storage.\n" +
                 "The city owns "+ acres +" acres of land.\n" +
                 "Land is currently worth "+ newCostOfLand +" bushels per acre.\n" +
@@ -128,11 +129,11 @@ import java.util.Scanner;
     }
 
     public void finalSummary(){
-
-        System.out.println("O great Hammurabi!\n" +
-                "In only year "+ year +" of your rule,\n" +
-                "you have created a disaster, you have been overthrown as ruler.");
-
+            if (uprising(population,starvationDeaths)) {
+                System.out.println("O great Hammurabi!\n" +
+                        "In only year " + year + " of your rule,\n" +
+                        "you have created a disaster, you have been overthrown as ruler.");
+            }else
         System.out.println("O great Hammurabi!\n" +
                 "After "+ year +" of your rule.\n" +
                 "In your " +year+ "rule, "+ immigrants +" people entered the kingdom.\n" +
