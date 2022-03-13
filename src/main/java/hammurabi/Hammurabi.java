@@ -130,9 +130,10 @@ import java.util.Scanner;
 
     public void finalSummary(){
             if (uprising(population,starvationDeaths)) {
-                System.out.println("O great Hammurabi!\n" +
-                        "In only year " + year + " of your rule,\n" +
-                        "you have created a disaster, you have been overthrown as ruler.");
+                System.out.println("O HAMMURABI!\n" +
+                        "IN ONLY YEAR " + year + " OF YOUR RULE,\n" +
+                        "YOU HAVE CREATED A DISASTER, YOU HAVE BEEN OVERTHROWN AS RULER.\n"+
+                        "GAME OVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }else
         System.out.println("O great Hammurabi!\n" +
                 "After "+ year +" of your rule.\n" +
